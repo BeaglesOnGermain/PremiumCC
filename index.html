@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Coffee & Clarity with Sandra Melvin, CLC — private intuitive guidance, personalized prayerful preparation, and grounded post-session action plans rooted by the sea in Saint John, NB and offered worldwide.">
+<title>Coffee & Clarity — Private Intuitive Guidance with Sandra Melvin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #173153;
+    --navy-deep: #0e1f36;
+    --blue: #2f6f8f;
+    --sea: #d8eced;
+    --sea-soft: #edf7f6;
+    --cream: #fbf7ef;
+    --white: #ffffff;
+    --gold: #b8922a;
+    --gold-light: #d5b15a;
+    --gold-pale: #f3e7c8;
+    --text-dark: #1b2433;
+    --text-mid: #536071;
+    --text-light: #7b8794;
+    --shadow: 0 18px 50px rgba(14,31,54,.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    min-height: 74px;
+    padding: .7rem 4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    background: rgba(251,247,239,.93);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(184,146,42,.22);
+  }
+  .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; cursor: pointer; }
+  .nav-logo-icon { width: 44px; height: 44px; }
+  .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; line-height: 1; color: var(--navy); }
+  .nav-logo-text span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; list-style: none; gap: 1.7rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-links a {
+    font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none;
+    color: var(--navy); font-weight: 500; cursor: pointer; position: relative;
+  }
+  .nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform .25s ease; }
+  .nav-links a:hover::after, .nav-links a.active-link::after { transform: scaleX(1); }
+  .nav-cta { background: var(--navy); color: var(--gold-pale) !important; padding: .72rem 1.1rem; border-radius: 999px; border: 1px solid rgba(184,146,42,.35); }
+  .nav-cta::after { display: none; }
+
+  .brand-svg { width: 100%; height: 100%; }
+  .btn-primary, .btn-secondary, .btn-light {
+    display: inline-block; text-decoration: none; cursor: pointer; border: none;
+    font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    padding: 1rem 1.55rem; border-radius: 999px; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary { background: var(--gold); color: var(--navy-deep); box-shadow: 0 10px 30px rgba(184,146,42,.18); }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--gold-light); }
+  .btn-secondary { background: var(--navy); color: var(--gold-pale); border: 1px solid rgba(184,146,42,.38); }
+  .btn-secondary:hover { transform: translateY(-2px); color: var(--white); }
+  .btn-light { background: var(--cream); color: var(--navy); border: 1px solid rgba(184,146,42,.4); }
+
+  .hero {
+    min-height: 100vh;
+    padding-top: 74px;
+    display: grid;
+    grid-template-columns: minmax(560px, .92fr) minmax(520px, 1.08fr);
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 5.2rem 3rem 12rem 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 3;
+  }
+  .eyebrow, .section-label, .page-hero-eyebrow {
+    font-size: .68rem; letter-spacing: .27em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 1.15rem;
+  }
+  .eyebrow::before, .section-label::before { content: ''; display: inline-block; vertical-align: middle; width: 2.4rem; height: 1px; background: var(--gold); margin-right: .85rem; }
+  .hero-logo-title {
+    margin-top: 1.2rem;
+    margin-bottom: 2.15rem;
+    line-height: .86;
+    position: relative;
+    max-width: 720px;
+  }
+  .hero-coffee {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--navy-deep);
+    font-size: clamp(4.9rem, 7vw, 7.2rem);
+    font-weight: 300;
+    letter-spacing: .055em;
+    line-height: .9;
+  }
+  .hero-clarity {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    color: #a67c24;
+    font-size: clamp(7.2rem, 10.5vw, 11.4rem);
+    font-weight: 400;
+    line-height: .72;
+    margin-top: -.35rem;
+    margin-left: 1rem;
+    text-shadow: 0 1px 0 rgba(255,255,255,.35);
+  }
+  .hero-mark {
+    width: min(410px, 72%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: .15rem 0 2rem 0;
+    color: rgba(184,146,42,.7);
+  }
+  .hero-mark::before,
+  .hero-mark::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: rgba(184,146,42,.48);
+  }
+  .hero-mark span {
+    font-size: 1.35rem;
+    line-height: 1;
+    color: rgba(184,146,42,.62);
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text-dark);
+    font-size: clamp(1.35rem, 1.8vw, 1.72rem);
+    line-height: 1.42;
+    max-width: 610px;
+    margin-bottom: 0;
+    letter-spacing: .01em;
+  }
+  .hero-right {
+    position: relative;
+    min-height: calc(100vh - 74px);
+    z-index: 1;
+  }
+  .hero-right img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: contrast(1.03) saturate(.93);
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(to right, var(--cream) 0%, rgba(251,247,239,.82) 18%, rgba(251,247,239,.42) 38%, transparent 58%),
+      linear-gradient(to top, rgba(251,247,239,.55) 0%, transparent 26%);
+    pointer-events: none;
+  }
+  .hero-feature-row {
+    position: absolute;
+    z-index: 5;
+    left: 6rem;
+    right: 6rem;
+    bottom: 5.1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    pointer-events: none;
+  }
+  .hero-card {
+    width: min(600px, 45vw);
+    min-height: 118px;
+    background: rgba(14,31,54,.98);
+    color: var(--gold-pale);
+    padding: 1.65rem 2rem 1.5rem;
+    border: 1px solid rgba(184,146,42,.28);
+    box-shadow: 0 18px 50px rgba(14,31,54,.18);
+    pointer-events: auto;
+  }
+  .hero-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--white);
+    font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+    font-weight: 400;
+    letter-spacing: .035em;
+    margin-bottom: .5rem;
+  }
+  .hero-card p {
+    font-size: .86rem;
+    line-height: 1.55;
+    color: var(--gold-pale);
+    max-width: 560px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    pointer-events: auto;
+  }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    white-space: nowrap;
+    padding: 1.05rem 1.95rem;
+  }
+
+  .philosophy-strip { background: var(--navy); padding: 2.4rem 4rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; border-top: 1px solid rgba(184,146,42,.28); border-bottom: 1px solid rgba(184,146,42,.28); }
+  .philosophy-pill { color: var(--gold-pale); letter-spacing: .18em; text-transform: uppercase; font-size: .68rem; display: flex; align-items: center; gap: .65rem; }
+  .philosophy-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .section { padding: 6rem 5rem; background: var(--cream); }
+  .section.white { background: var(--white); }
+  .section.sea { background: var(--sea-soft); }
+  .section.dark { background: var(--navy); color: var(--gold-pale); }
+  .section-inner { max-width: 1120px; margin: 0 auto; }
+  .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.35rem, 4vw, 3.7rem); font-weight: 300; line-height: 1.08; color: var(--navy); margin-bottom: 1.25rem; }
+  .section.dark .section-heading { color: var(--white); }
+  .section-heading em { color: var(--gold); font-style: italic; }
+  .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.23rem; line-height: 1.85; color: var(--text-mid); }
+  .section.dark .section-body { color: var(--gold-pale); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .image-wrap { position: relative; }
+  .image-wrap img { width: 100%; min-height: 500px; max-height: 620px; object-fit: cover; object-position: center top; display: block; box-shadow: var(--shadow); }
+  .image-frame { position: absolute; inset: -1.25rem 1.25rem 1.25rem -1.25rem; border: 1px solid rgba(184,146,42,.32); z-index: -1; }
+  .quote-card { margin-top: 2rem; background: var(--navy); color: var(--gold-pale); padding: 2rem; border-left: 3px solid var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1.42rem; line-height: 1.55; font-style: italic; }
+
+  .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 3rem; }
+  .method-card { background: var(--white); padding: 2rem; border: 1px solid rgba(184,146,42,.25); box-shadow: 0 10px 34px rgba(14,31,54,.06); }
+  .method-card.dark { background: var(--navy); color: var(--gold-pale); }
+  .method-number { font-family: 'Cormorant Garamond', serif; color: rgba(184,146,42,.55); font-size: 2.6rem; line-height: 1; margin-bottom: 1rem; }
+  .method-card h3 { font-family: 'Cormorant Garamond', serif; color: var(--navy); font-size: 1.45rem; font-weight: 500; margin-bottom: .75rem; }
+  .method-card.dark h3 { color: var(--white); }
+  .method-card p { color: var(--text-mid); font-size: .86rem; line-height: 1.78; }
+  .method-card.dark p { color: var(--gold-pale); }
+
+  .page-hero { padding: 11rem 5rem 5rem; text-align: center; background: linear-gradient(145deg, var(--cream), var(--sea-soft)); border-bottom: 1px solid rgba(184,146,42,.22); }
+  .page-hero-title { font-family: 'Cormorant Garamond', serif; color: var(--navy); font-size: clamp(3rem, 5vw, 5rem); font-weight: 300; line-height: 1.05; }
+  .page-hero-title em { color: var(--gold); font-style: italic; }
+  .page-hero-sub { margin: 1.2rem auto 0; max-width: 720px; color: var(--text-mid); font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; line-height: 1.65; }
+
+  .service-grid { display: grid; grid-template-columns: 1fr; gap: 1.3rem; margin-top: 3rem; }
+  .service-card { display: grid; grid-template-columns: 230px 1fr; gap: 2.5rem; background: var(--navy); color: var(--gold-pale); padding: 2.5rem; border: 1px solid rgba(184,146,42,.35); box-shadow: 0 14px 40px rgba(14,31,54,.09); }
+  .service-tag { display: inline-block; color: var(--navy); background: var(--gold); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; font-size: .62rem; padding: .45rem .75rem; border-radius: 999px; margin-bottom: 1rem; }
+  .service-price { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--white); line-height: 1; }
+  .service-price span { display: block; margin-top: .5rem; font-family: 'Jost', sans-serif; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-pale); }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; color: var(--white); font-size: 1.85rem; font-weight: 400; margin-bottom: .7rem; }
+  .service-card p { line-height: 1.8; font-size: .9rem; margin-bottom: 1rem; }
+  .included { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+  .included span { border: 1px solid rgba(243,231,200,.32); color: var(--gold-pale); padding: .35rem .7rem; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+
+  .note-box { margin-top: 3rem; background: rgba(184,146,42,.12); border: 1px solid rgba(184,146,42,.36); padding: 2rem; text-align: center; }
+  .note-box h4 { color: var(--navy); font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: .8rem; }
+  .note-box p { color: var(--text-mid); line-height: 1.8; font-size: .9rem; }
+
+  .schedule-layout { display: grid; grid-template-columns: .9fr 1.4fr; min-height: calc(100vh - 74px); margin-top: 74px; }
+  .schedule-sidebar { background: var(--navy); color: var(--gold-pale); padding: 5rem 3.2rem; position: sticky; top: 74px; align-self: start; min-height: calc(100vh - 74px); }
+  .schedule-sidebar h2 { font-family: 'Cormorant Garamond', serif; color: var(--white); font-size: 2.7rem; line-height: 1.08; font-weight: 300; margin-bottom: 1.2rem; }
+  .schedule-sidebar h2 em { color: var(--gold); font-style: italic; }
+  .schedule-sidebar p, .schedule-details li { color: var(--gold-pale); line-height: 1.82; font-size: .9rem; }
+  .schedule-details { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .schedule-details li { display: flex; gap: .85rem; }
+  .detail-icon { color: var(--gold); min-width: 22px; }
+  .schedule-divider { height: 1px; background: rgba(184,146,42,.32); margin: 2.2rem 0; }
+  .schedule-contact a { color: var(--gold); text-decoration: none; }
+  .schedule-main { background: var(--cream); padding: 4.5rem; }
+  .schedule-main h3 { font-family: 'Cormorant Garamond', serif; color: var(--navy); font-size: 1.8rem; font-weight: 400; margin-bottom: .5rem; }
+  .schedule-main p { color: var(--text-mid); line-height: 1.75; font-size: .9rem; margin-bottom: 2rem; }
+
+  .cta-banner { text-align: center; background: var(--navy); color: var(--gold-pale); padding: 5rem; border-top: 1px solid rgba(184,146,42,.25); }
+  .cta-banner h2 { color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: clamp(2.3rem, 4vw, 3.7rem); font-weight: 300; margin-bottom: 1rem; }
+  .cta-banner h2 em { color: var(--gold); font-style: italic; }
+  .cta-banner p { margin: 0 auto 2rem; max-width: 680px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; line-height: 1.7; }
+
+  footer { background: var(--navy-deep); color: var(--gold-pale); padding: 4rem 5rem 2rem; }
+  .footer-inner { max-width: 1120px; margin: 0 auto 2.4rem; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; }
+  .footer-brand .nav-logo-text { color: var(--white); font-size: 1.5rem; margin-bottom: 1rem; }
+  .footer-brand p, .footer-col p, .footer-col a { color: var(--gold-pale); line-height: 1.75; font-size: .83rem; text-decoration: none; }
+  .footer-col h5 { color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-size: .66rem; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { max-width: 1120px; margin: 0 auto; border-top: 1px solid rgba(184,146,42,.25); padding-top: 1.6rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--gold-pale); font-size: .72rem; }
+
+  @media (max-width: 980px) {
+    nav { padding: .8rem 1.5rem; align-items: flex-start; flex-direction: column; gap: .8rem; }
+    .nav-links { gap: 1rem; justify-content: flex-start; }
+    .nav-links a { font-size: .66rem; }
+    .hero { grid-template-columns: 1fr; padding-top: 125px; min-height: auto; }
+    .hero-left { padding: 4rem 2rem 2.5rem; }
+    .hero-logo-title { margin-top: .5rem; margin-bottom: 1.4rem; }
+    .hero-coffee { font-size: clamp(3.9rem, 17vw, 5.6rem); }
+    .hero-clarity { font-size: clamp(5.6rem, 24vw, 8.5rem); margin-left: .2rem; }
+    .hero-mark { margin-bottom: 1.3rem; }
+    .hero-subtitle { font-size: 1.25rem; line-height: 1.5; }
+    .hero-right { min-height: 420px; }
+    .hero-feature-row { position: relative; left: auto; right: auto; bottom: auto; padding: 0 2rem 2.5rem; flex-direction: column; align-items: stretch; gap: 1rem; background: var(--cream); }
+    .hero-card { width: 100%; min-height: auto; }
+    .hero-actions { flex-wrap: wrap; gap: .8rem; }
+    .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; text-align: center; }
+    .section, .page-hero, .cta-banner, footer { padding-left: 2rem; padding-right: 2rem; }
+    .two-col, .method-grid, .schedule-layout { grid-template-columns: 1fr; }
+    .method-grid { gap: 1rem; }
+    .service-card { grid-template-columns: 1fr; }
+    .schedule-layout { margin-top: 125px; }
+    .schedule-sidebar { position: static; min-height: auto; }
+    .schedule-main { padding: 3rem 2rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" onclick="showPage('home')" aria-label="Coffee and Clarity home">
+    <div class="nav-logo-icon">
+      <svg class="brand-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="78" rx="20" ry="4" fill="none" stroke="#173153" stroke-width="1.5"/>
+        <path d="M30 62 Q30 78 50 78 Q70 78 70 62" fill="none" stroke="#173153" stroke-width="1.8"/>
+        <path d="M30 58 L70 58" stroke="#173153" stroke-width="1.8"/>
+        <path d="M65 63 Q74 63 74 70 Q74 76 65 76" fill="none" stroke="#173153" stroke-width="1.5"/>
+        <path d="M44 56 Q43 48 41 42 Q38 34 32 26 Q28 18 35 14 Q42 10 46 18 Q50 26 50 30" fill="none" stroke="#b8922a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M56 56 Q57 48 59 42 Q62 34 68 26 Q72 18 65 14 Q58 10 54 18 Q50 26 50 30" fill="none" stroke="#b8922a" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M50 30 Q46 22 38 16 Q30 10 22 14 Q16 18 20 24 Q26 18 32 20 Q42 24 50 30" fill="none" stroke="#173153" stroke-width="2" stroke-linecap="round"/>
+        <path d="M50 30 Q54 22 62 16 Q70 10 78 14 Q84 18 80 24 Q74 18 68 20 Q58 24 50 30" fill="none" stroke="#173153" stroke-width="2" stroke-linecap="round"/>
+        <path d="M50 30 Q47 26 45 22 Q47 18 50 20 Q53 18 55 22 Q53 26 50 30" fill="#173153"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">Coffee &amp; <span>Clarity</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active-link">Home</a></li>
+    <li><a onclick="showPage('method')" id="nav-method">Method</a></li>
+    <li><a onclick="showPage('services')" id="nav-services">Sessions</a></li>
+    <li><a onclick="showPage('animal')" id="nav-animal">Animal Communication</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('schedule')" id="nav-schedule">Schedule</a></li>
+    <li><a onclick="showPage('schedule')" class="nav-cta">Book a Private Session</a></li>
+  </ul>
+</nav>
+
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Saint John · Worldwide</div>
+      <h1 class="hero-logo-title" aria-label="Coffee and Clarity">
+        <span class="hero-coffee">Coffee &amp;</span>
+        <span class="hero-clarity">Clarity</span>
+      </h1>
+      <div class="hero-mark"><span>✧</span></div>
+      <p class="hero-subtitle">Compassionate intuitive sessions for people who want depth, gentleness, and meaningful next steps — not pressure, performance, or overwhelm.</p>
+    </div>
+    <div class="hero-right">
+      <img src="Hero.png" alt="Sandra Melvin — Coffee & Clarity">
+    </div>
+    <div class="hero-feature-row">
+      <div class="hero-card">
+        <h3>Quietly premium. Deeply personal.</h3>
+        <p>Each signature session includes personalized prayerful preparation, the private intuitive session itself, and a gentle Clarity Action Plan afterward.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-primary" onclick="showPage('schedule')">Book a Private Session</a>
+        <a class="btn-secondary" onclick="showPage('method')">The Experience</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="philosophy-strip">
+    <div class="philosophy-pill"><div class="philosophy-dot"></div>Deep Listening</div>
+    <div class="philosophy-pill"><div class="philosophy-dot"></div>Prayerful Holding</div>
+    <div class="philosophy-pill"><div class="philosophy-dot"></div>Intuitive Insight</div>
+    <div class="philosophy-pill"><div class="philosophy-dot"></div>Grounded Action</div>
+    <div class="philosophy-pill"><div class="philosophy-dot"></div>Gentle Forward Movement</div>
+  </div>
+
+  <section class="section white">
+    <div class="section-inner two-col">
+      <div class="image-wrap">
+        <img src="About.png" alt="Sandra by the waterfront">
+        <div class="image-frame"></div>
+      </div>
+      <div>
+        <div class="section-label">The feeling of the work</div>
+        <h2 class="section-heading">Like sea air for the <em>heart and mind.</em></h2>
+        <div class="section-body">
+          <p>Coffee &amp; Clarity was born from a simple belief: when people feel safe, unhurried, and genuinely heard, clarity begins to surface.</p>
+          <p style="margin-top:1.15rem;">This is not a rushed reading or a performance. It is a private, compassionate experience for the tender places in life — decisions, transitions, grief, uncertainty, relationships, animal companions, and the quiet questions you may not know how to say out loud yet.</p>
+          <p style="margin-top:1.15rem;">Based in Saint John and available worldwide, each session is held with the grounded warmth of a Maritime conversation and the care of a sacred appointment.</p>
+        </div>
+        <div class="quote-card">“A conversation can change everything — especially when it helps you hear yourself again.”</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Ready for your moment of <em>clarity?</em></h2>
+    <p>A warm, private intuitive experience with preparation before we meet and gentle next steps afterward.</p>
+    <a class="btn-primary" onclick="showPage('schedule')">Choose Your Time</a>
+  </section>
+  <footerHTML></footerHTML>
+</div>
+
+<div id="page-method" class="page">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">The Coffee &amp; Clarity Method</div>
+    <h1 class="page-hero-title">A private experience held <em>before, during, and after.</em></h1>
+    <p class="page-hero-sub">Your session is not just the time on the calendar. It is a thoughtfully held process designed to help you prepare, receive, and integrate.</p>
+  </div>
+  <section class="section">
+    <div class="section-inner">
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-number">01</div>
+          <h3>Prepare</h3>
+          <p>You receive a personalized pre-session meditation or prayer created around your intention, question, or concern.</p>
+        </div>
+        <div class="method-card dark">
+          <div class="method-number">02</div>
+          <h3>Hold</h3>
+          <p>Before we meet, I spend dedicated time in meditation or prayer on your behalf, holding your concern with compassion and openness.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-number">03</div>
+          <h3>Receive</h3>
+          <p>Our live session blends intuitive guidance, deep listening, reflection, spiritual insight, and practical encouragement.</p>
+        </div>
+        <div class="method-card dark">
+          <div class="method-number">04</div>
+          <h3>Integrate</h3>
+          <p>Afterward, you receive a Clarity Action Plan with key themes, gentle next steps, and supportive practices based on our conversation.</p>
+        </div>
+      </div>
+      <div class="note-box">
+        <h4>Premium does not have to mean cold.</h4>
+        <p>For Coffee &amp; Clarity, premium means spaciousness, privacy, preparation, presence, and follow-through. It means you are not squeezed into a quick appointment and sent away to make sense of everything alone.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <h2>Be held with care <em>from beginning to end.</em></h2>
+    <p>This is a gentle, structured, deeply personal way to receive intuitive support.</p>
+    <a class="btn-primary" onclick="showPage('services')">View Session Options</a>
+  </section>
+  <footerHTML></footerHTML>
+</div>
+
+<div id="page-services" class="page">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Private Sessions</div>
+    <h1 class="page-hero-title">Choose the level of support that feels <em>right.</em></h1>
+    <p class="page-hero-sub">All prices are in Canadian dollars. Online sessions are available worldwide; local sessions may be held in relaxed Saint John settings when appropriate.</p>
+  </div>
+  <section class="section white">
+    <div class="section-inner">
+      <div class="service-grid">
+        <div class="service-card">
+          <div>
+            <div class="service-tag">Focused</div>
+            <div class="service-price">$88 <span>30 minutes</span></div>
+          </div>
+          <div>
+            <h3>Focused Clarity Session</h3>
+            <p>A shorter session for one clear question, decision, or situation. This is best when you want compassionate intuitive insight without needing a full private process.</p>
+            <div class="included"><span>One question</span><span>Gentle insight</span><span>Clear next step</span></div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div>
+            <div class="service-tag">Signature</div>
+            <div class="service-price">$155 <span>Introductory rate</span></div>
+          </div>
+          <div>
+            <h3>Coffee &amp; Clarity Signature Session</h3>
+            <p>A private 75-minute intuitive guidance session for reflection, reassurance, and meaningful direction. This is the heart of Coffee &amp; Clarity — compassionate, spacious, and grounded.</p>
+            <p><strong>Regular rate:</strong> $222 CAD once the introductory private session period ends.</p>
+            <div class="included"><span>Personalized meditation/prayer</span><span>Pre-session holding time</span><span>75-minute session</span><span>Clarity Action Plan</span></div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div>
+            <div class="service-tag">Deep Support</div>
+            <div class="service-price">$333 <span>2 hours</span></div>
+          </div>
+          <div>
+            <h3>Deep Clarity Private Intensive</h3>
+            <p>A deeper private session for larger transitions, grief, spiritual crossroads, relationship patterns, life direction, or layered concerns that need more room.</p>
+            <div class="included"><span>Everything in Signature</span><span>2-hour session</span><span>Expanded action plan</span><span>7-day email check-in</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="note-box">
+        <h4>A note about these sessions</h4>
+        <p>Coffee &amp; Clarity is not therapy and is not a substitute for licensed medical, psychological, legal, or financial advice. These sessions are supportive, intuitive, spiritual, and reflective in nature.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <h2>Fewer sessions. <em>More presence.</em></h2>
+    <p>I accept a limited number of private sessions each week so each client receives thoughtful preparation, personal attention, and meaningful follow-through.</p>
+    <a class="btn-primary" onclick="showPage('schedule')">Book a Session</a>
+  </section>
+  <footerHTML></footerHTML>
+</div>
+
+<div id="page-animal" class="page">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Animal Communication</div>
+    <h1 class="page-hero-title">A compassionate bridge between you and the animals you <em>love.</em></h1>
+    <p class="page-hero-sub">For living or departed animal companions, emotional understanding, transitions, behaviour questions, grief, and deepening the bond.</p>
+  </div>
+  <section class="section white">
+    <div class="section-inner two-col">
+      <div>
+        <div class="section-label">Listening beyond words</div>
+        <h2 class="section-heading">Gentle connection. <em>Deeper understanding.</em></h2>
+        <div class="section-body">
+          <p>Animal communication sessions are built on the same foundations as Coffee &amp; Clarity: deep listening, prayerful presence, intuitive insight, and grounded care.</p>
+          <p style="margin-top:1.15rem;">This work may support you when an animal’s behaviour has shifted, when you are facing a transition, when grief is present, or when you simply long to understand your companion on a deeper level.</p>
+        </div>
+        <div class="quote-card">“Our animal companions are not separate from our healing. They often walk beside us through it.”</div>
+      </div>
+      <div class="image-wrap">
+        <img src="San.jpg" alt="Sandra Melvin with her two Beagles">
+        <div class="image-frame"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section sea">
+    <div class="section-inner">
+      <div class="service-card">
+        <div>
+          <div class="service-tag">Animal Session</div>
+          <div class="service-price">$188 <span>Introductory rate</span></div>
+        </div>
+        <div>
+          <h3>Animal Soul Connection Session</h3>
+          <p>A compassionate intuitive session for you and your animal companion, including personalized preparation, dedicated prayerful holding, intuitive animal communication, and a written integration summary.</p>
+          <p><strong>Regular rate:</strong> $222 CAD after the introductory period.</p>
+          <div class="included"><span>Photo-based connection</span><span>Living or departed animals</span><span>Pre-session prayer</span><span>Integration notes</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <h2>When love needs a <em>language.</em></h2>
+    <p>Compassionate insight for the bond that words cannot always explain.</p>
+    <a class="btn-primary" onclick="showPage('schedule')">Book Animal Communication</a>
+  </section>
+  <footerHTML></footerHTML>
+</div>
+
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">About Sandra Melvin, CLC</div>
+    <h1 class="page-hero-title">Compassion, clarity, and <em>deep connection.</em></h1>
+    <p class="page-hero-sub">A gentle intuitive guide rooted in Saint John, serving clients locally and worldwide.</p>
+  </div>
+  <section class="section white">
+    <div class="section-inner two-col">
+      <div class="image-wrap">
+        <img src="babies.jpg" alt="A child sharing a tender moment with a deer — the natural connection Sandra brings to her work">
+        <div class="image-frame"></div>
+      </div>
+      <div>
+        <div class="section-label">Meet Sandra</div>
+        <h2 class="section-heading">A grounded presence for tender <em>turning points.</em></h2>
+        <div class="section-body">
+          <p>For over 20 years, Sandra has supported people and their animal companions through intuitive guidance, energy work, compassionate listening, and spiritual connection.</p>
+          <p style="margin-top:1.15rem;">Rooted in a lifelong connection to spirit, the presence of God, nature, and animals, Sandra brings warmth, steadiness, and emotional intelligence to the work.</p>
+          <p style="margin-top:1.15rem;">People often come feeling stuck, overwhelmed, disconnected, or unsure. The intention is that they leave feeling clearer, more grounded, and gently reminded of their own worth and inner knowing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section dark">
+    <div class="section-inner">
+      <div class="section-label">Training &amp; Credentials</div>
+      <h2 class="section-heading">Intuitive work, grounded in <em>lifelong learning.</em></h2>
+      <div class="method-grid">
+        <div class="method-card"><h3>Life Coaching</h3><p>Certified life coaching and goal-setting training to support grounded, practical next steps.</p></div>
+        <div class="method-card"><h3>Animal Communication</h3><p>Animal Communication Mastery training and intuitive animal healing experience.</p></div>
+        <div class="method-card"><h3>Energy Work</h3><p>Reiki Master, Kundalini Reiki Master, reflexology, and complementary therapy training.</p></div>
+        <div class="method-card"><h3>Communication</h3><p>BA in English from the University of New Brunswick and decades of client-facing support.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <h2>You do not have to carry it <em>alone.</em></h2>
+    <p>A private, compassionate conversation can help you find your next clear step.</p>
+    <a class="btn-primary" onclick="showPage('schedule')">Book With Sandra</a>
+  </section>
+  <footerHTML></footerHTML>
+</div>
+
+<div id="page-schedule" class="page">
+  <div class="schedule-layout">
+    <aside class="schedule-sidebar">
+      <div class="section-label">Schedule</div>
+      <h2>Let’s find your moment of <em>clarity.</em></h2>
+      <p>Choose a time that feels right. Sessions are available online worldwide, and local Saint John sessions may be arranged in relaxed cafés, coffee shops, or outdoor spaces when appropriate.</p>
+      <ul class="schedule-details">
+        <li><span class="detail-icon">☕</span><span>Local sessions rooted in the warm, coastal spirit of Saint John, NB.</span></li>
+        <li><span class="detail-icon">🌎</span><span>Online sessions available worldwide by phone or video.</span></li>
+        <li><span class="detail-icon">🕊</span><span>Signature sessions include personalized preparation and a post-session Clarity Action Plan.</span></li>
+        <li><span class="detail-icon">♥</span><span>A limited number of private sessions are accepted each week.</span></li>
+      </ul>
+      <div class="schedule-divider"></div>
+      <p class="schedule-contact">Questions first?<br>Email Sandra at <a href="mailto:IntuitiveSan@Outlook.com">IntuitiveSan@Outlook.com</a></p>
+    </aside>
+    <main class="schedule-main">
+      <h3>Choose Your Time</h3>
+      <p>Booking opens in Calendly below. Select the session type and time that feels right for you.</p>
+      <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/intuitivesan?hide_gdpr_banner=1&primary_color=b8922a&text_color=173153" style="min-width:320px;height:720px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <div class="note-box" style="text-align:left;">
+        <h4>Before you book</h4>
+        <p>After booking, you may be invited to share your intention, question, or concern so your personalized meditation/prayer and session preparation can be created with care.</p>
+        <p style="margin-top:1rem;"><a href="mailto:IntuitiveSan@Outlook.com" class="btn-primary">Send a Message</a></p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<template id="footer-template">
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-text">Coffee &amp; <span>Clarity</span></div>
+        <p>Rooted by the sea in Saint John, New Brunswick, Coffee &amp; Clarity offers private intuitive guidance, personalized prayerful preparation, and a grounded post-session action plan so you feel empowered on your journey.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('method')">The Method</a></li>
+          <li><a onclick="showPage('services')">Sessions</a></li>
+          <li><a onclick="showPage('animal')">Animal Communication</a></li>
+          <li><a onclick="showPage('about')">About Sandra</a></li>
+          <li><a onclick="showPage('schedule')">Schedule</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <p>Based in Saint John, New Brunswick<br>Available worldwide<br><br><a href="mailto:IntuitiveSan@Outlook.com">IntuitiveSan@Outlook.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Coffee &amp; Clarity · Sandra Melvin, CLC</p>
+      <p>Calm · Compassionate · Quietly Premium</p>
+    </div>
+  </footer>
+</template>
+
+<script>
+  document.querySelectorAll('footerHTML').forEach(el => {
+    el.replaceWith(document.getElementById('footer-template').content.cloneNode(true));
+  });
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
+    const page = document.getElementById('page-' + name);
+    if (page) page.classList.add('active');
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active-link');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
